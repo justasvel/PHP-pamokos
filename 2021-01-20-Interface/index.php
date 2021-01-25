@@ -23,19 +23,9 @@ class Mercedes implements Car {
     }
 }
 
-class AmphibiousMercedes implements Car, Ship{
-    private $tankSize = 90;
-    private $maximumSpeed = 200;
+class AmphibiousMercedes extends Mercedes implements Ship{
     private $crewMembers = 1;
     private $numberOfAnchors = 1;
-    
-    function fuelTankSize() {
-        return $this->tankSize;
-    }
-    
-    function maxSpeed() {
-        return $this->maximumSpeed;
-    }
     
     function numberOfAnchors() {
         return $this->numberOfAnchors;
