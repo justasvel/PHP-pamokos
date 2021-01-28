@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
+    <title>Animals</title>
+</head>
+
+<body>
+    <h3>Choose an animal or grass:</h3>
+    <form action="createobject.php" method="post">
+        <input type="radio" id="grass" name="animal" value="Grass">Grass<br>
+        <input type="radio" id="carnivore" name="animal" value="Carnivore">Carnivore<br>
+        <input type="radio" id="herbivore" name="animal" value="Herbivore">Herbivore<br>
+        <br>
+
+        <div id="grass-create" class="d-none">
+            <label for="grass">Enter grass weight:</label><br>
+            <input type="number" step="0.1" id="weight" name="grass-weight" placeholder="Weight in kilos..."><br>
+            <label for="region">Enter grass region:</label><br>
+            <input type="text" id="region" name="grass-region" placeholder="Region name..."><br><br>
+            <input type="submit" name="submit" value="Submit">
+        </div>
+
+        <div id="carnivore-options" class="d-none">
+            <label for="carnivore-option">Carnivore options:</label><br>
+            <select id="carnivore-option" name="carnivore-select">
+                <option value="0" selected>Select Animal</option>
+                <option value="1">Shark</option>
+                <option value="2">Lion</option>
+            </select>
+        </div>
+        <br>
+
+        <div id="carnivore-inputs" class="d-none">
+            <label>Enter animal weight:</label><br>
+            <input type="number" step="0.1" id="carnivore-weight" name="carnivore-weight" placeholder="Weight in kilos..."><br>
+            <label>Enter animal region:</label><br>
+            <input type="text" id="carnivore-region" name="carnivore-region" placeholder="Region name..."><br><br>
+            <input type="submit" name="submit" value="Submit">
+        </div>
+
+        <div id="herbivore-options" class="d-none">
+            <label for="herbivore-option">Herbivore options:</label><br>
+            <select id="herbivore-option" name="herbivore-select">
+                <option value="0" selected>Select Animal</option>
+                <option value="1">Rabbit</option>
+                <option value="2">Tuna</option>
+            </select>
+        </div>
+        <br>
+
+         <div id="herbivore-inputs" class="d-none">
+        <label for="herbivore-weight">Enter animal weight:</label><br>
+        <input type="number" step="0.1" id="herbivore-weight" name="herbivore-weight" placeholder="Weight in kilos..."><br>
+        <label for="herbivore-region">Enter animal region:</label><br>
+        <input type="text" id="herbivore-region" name="herbivore-region" placeholder="Region name..."><br><br>
+        <input type="submit" name="submit" value="Submit">
+    </div> 
+    </form>
+    <script src="main.js"></script>
+</body>
+
+</html>
