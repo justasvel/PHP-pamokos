@@ -9,6 +9,7 @@ class Article {
     public $type;
     public $title;
     public $preview;
+    public $id;
 
     public function __construct($row) {
         $this->title = $row['title'];
@@ -18,6 +19,7 @@ class Article {
         $this->publishDate = $row['publishDate'];
         $this->type = $row['type'];
         $this->preview = $row['preview'];
+        $this->id = $row['id'];
     }
 
 }
@@ -25,11 +27,18 @@ class Article {
 class ShortArticle extends Article {
 
     public function printArticle() {
+        echo '<div>';
         echo '<h3>' . $this->title . '</h3>';
         echo '<p style="font-size: 10px;">' . $this->author . '</p>';
         echo '<p style="font-size: 10px;">' . $this->publishDate . '</p>';
         echo '<br>' . $this->type;
         echo '<br>' . $this->content;
+        echo '</div>';
+    }
+    
+    public function printLink() {
+        echo "<br><a href='preview_photos.php?id=$this->id'> Daugiau nuotrauku </a>";
+        echo '<hr>';
     }
 
 }
@@ -37,11 +46,18 @@ class ShortArticle extends Article {
 class NewsArticle extends Article {
 
     public function printArticle() {
+        echo '<div>';
         echo '<h3>' . $this->title . '</h3>';
         echo '<p style="font-size: 10px;">' . $this->author . '</p>';
         echo '<p style="font-size: 10px;">' . $this->publishDate . '</p>';
         echo '<br>' . $this->type;
         echo '<br>' . $this->content;
+        echo '</div>';
+    }
+    
+        public function printLink() {
+        echo "<br><a href='preview_photos.php?id=$this->id'> Daugiau nuotrauku </a>";
+        echo '<hr>';
     }
 
 }
@@ -49,15 +65,17 @@ class NewsArticle extends Article {
 class PhotoArticle extends Article {
 
     public function printArticle() {
+        echo '<div>';
         echo '<h3>' . $this->title . '</h3>';
         echo '<p style="font-size: 10px;">' . $this->author . '</p>';
         echo '<p style="font-size: 10px;">' . $this->publishDate . '</p>';
         echo '<br>' . $this->type;
         echo '<br>' . $this->content;
+        echo '</div>';
     }
     
-    public function returnImage() {
-        echo '<br><img src=' . $this->preview . ' width="200" >';
+        public function printLink() {
+        echo "<br><a href='preview_photos.php?id=$this->id'> Daugiau nuotrauku </a>";
+        echo '<hr>';
     }
-
 }
