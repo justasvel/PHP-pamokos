@@ -37,7 +37,7 @@ class ShortArticle extends Article {
     }
     
     public function printLink() {
-        echo "<br><a href='preview_photos.php?id=$this->id'> Daugiau nuotrauku </a>";
+        echo "<br><a href='viewArticle.php?id=$this->id'> Peržiūrėti visą straipsnį </a>";
         echo '<hr>';
     }
 
@@ -56,7 +56,7 @@ class NewsArticle extends Article {
     }
     
         public function printLink() {
-        echo "<br><a href='preview_photos.php?id=$this->id'> Daugiau nuotrauku </a>";
+        echo "<br><a href='viewArticle.php?id=$this->id'> Peržiūrėti visą straipsnį </a>";
         echo '<hr>';
     }
 
@@ -75,7 +75,11 @@ class PhotoArticle extends Article {
     }
     
         public function printLink() {
-        echo "<br><a href='preview_photos.php?id=$this->id'> Daugiau nuotrauku </a>";
+        echo "<br><a href='viewArticle.php?id=$this->id'> Peržiūrėti visą straipsnį </a>";
         echo '<hr>';
+    }
+    
+    public function printPreview() {
+        echo '<img src="'.$this->preview.'" width="200">';
     }
 }
