@@ -10,9 +10,11 @@
 
     <body>
         <?php
+        session_start();
         require 'userAuth/userLogOut.php';
         require 'templates/logOut.html.php';
         require 'data.php';
+        require 'userAuth/checkuser.php';
 
         if (isset($errors)) {
             echo $errors;
@@ -25,7 +27,9 @@
             if ($pub->type == 'PhotoArticle') {
                 echo $pub->printPreview();
             }
-
+            authorCheck($pub);
+            adminCheck($pub);
+            visitorCheck($pub);
             echo $pub->printLink();
         }
         ?>

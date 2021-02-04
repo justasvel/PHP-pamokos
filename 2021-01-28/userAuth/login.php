@@ -19,7 +19,7 @@ if (isset($_POST['submit'])) {
         $username = $_POST['username'];
         $password = $_POST['password'];
 
-        $sql = "SELECT username, password FROM users WHERE username = '$username' AND password = '$password'";
+        $sql = "SELECT id, username, password, usertype, article_id FROM users WHERE username = '$username' AND password = '$password'";
         $result = mysqli_query($link, $sql);
         $row = mysqli_fetch_array($result, MYSQLI_ASSOC);
         
@@ -28,8 +28,16 @@ if (isset($_POST['submit'])) {
         if($count == 1) {
             //Store session data
             $_SESSION["loggedin"] = true;
-            $_SESSION["id"] = $id;
             $_SESSION["username"] = $username;
+            $_SESSION["usertype"] = $row["usertype"];
+            $_SESSION["id"] = $row["id"];
+            
+            //Check if one of the authors are logged in
+            if (isset($row['article_id'])) {
+                $_SESSION['authorArticle'] = $row['article_id'];
+            } else {
+                $_SESSION['authorArticle'] = 0;
+            }
             
             //Redirect to view.php page
             header('location: view.php');

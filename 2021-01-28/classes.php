@@ -35,7 +35,15 @@ class ShortArticle extends Article {
         echo '<br>' . $this->content;
         echo '</div>';
     }
-    
+
+    public function commentButton() {
+        echo '<button>Comment</button>';
+    }
+
+    public function deleteButton() {
+        echo '<button>Delete</button>';
+    }
+
     public function printLink() {
         echo "<br><a href='viewArticle.php?id=$this->id'> Peržiūrėti visą straipsnį </a>";
         echo '<hr>';
@@ -54,10 +62,18 @@ class NewsArticle extends Article {
         echo '<br>' . $this->content;
         echo '</div>';
     }
-    
-        public function printLink() {
+
+    public function printLink() {
         echo "<br><a href='viewArticle.php?id=$this->id'> Peržiūrėti visą straipsnį </a>";
         echo '<hr>';
+    }
+
+    public function commentButton() {
+        echo '<button>Comment</button>';
+    }
+
+    public function deleteButton() {
+        echo '<button>Delete</button>';
     }
 
 }
@@ -73,13 +89,22 @@ class PhotoArticle extends Article {
         echo '<br>' . $this->content;
         echo '</div>';
     }
-    
-        public function printLink() {
+
+    public function printLink() {
         echo "<br><a href='viewArticle.php?id=$this->id'> Peržiūrėti visą straipsnį </a>";
         echo '<hr>';
     }
-    
+
     public function printPreview() {
-        echo '<img src="'.$this->preview.'" width="200">';
+        echo '<img src="' . $this->preview . '" width="200">';
     }
+
+    public function commentButton() {
+        echo '<button>Comment</button>';
+    }
+
+    public function deleteButton() {
+        echo '<button>Delete</button>';
+    }
+
 }
