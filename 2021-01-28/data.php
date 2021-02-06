@@ -1,12 +1,7 @@
 <?php
 
 require 'classes.php';
-require 'userAuht/config.php';
-//    $link = mysqli_connect('localhost', 'root', '', 'articles');
-//    
-//    if (mysqli_error($link) != '') {
-//        $errors = mysqli_error($link);
-//    }
+require 'userAuth/config.php';
     
     $sql = 'SELECT `id`, `author`, `shortContent`, `content`, `publishDate`, `type`, `title`, `preview` FROM articles ORDER BY `type`, `publishDate` DESC';
     

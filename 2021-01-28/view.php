@@ -5,6 +5,17 @@
         <title>Articles</title>
         <meta name="description" content="The HTML5 Herald">
         <meta name="author" content="SitePoint">
+        <style>
+            .btn {
+                display:inline-block;
+                text-decoration: none;
+                color: white;
+                padding: 2px;
+                background: gray;
+                border-radius: 5px;
+                margin: 10px 0;
+            }
+        </style>
 
     </head>
 
@@ -15,6 +26,8 @@
         require 'templates/logOut.html.php';
         require 'data.php';
         require 'userAuth/checkuser.php';
+        require 'articleManagement/printComments.php';
+
 
         if (isset($errors)) {
             echo $errors;
@@ -31,6 +44,7 @@
             adminCheck($pub);
             visitorCheck($pub);
             echo $pub->printLink();
+            printComments($pub);
         }
         ?>
 

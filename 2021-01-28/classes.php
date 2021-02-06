@@ -37,11 +37,11 @@ class ShortArticle extends Article {
     }
 
     public function commentButton() {
-        echo '<button>Comment</button>';
+        echo "<a class='btn' href='articleManagement/commentArticle.php?id=$this->id'> Leave Comment </a>";
     }
 
     public function deleteButton() {
-        echo '<button>Delete</button>';
+        echo "<a class='btn' href='articleManagement/deleteArticle.php?id=$this->id'> Delete Article </a>";
     }
 
     public function printLink() {
@@ -69,11 +69,11 @@ class NewsArticle extends Article {
     }
 
     public function commentButton() {
-        echo '<button>Comment</button>';
+        echo "<a class='btn' href='articleManagement/commentArticle.php?id=$this->id'> Leave Comment </a>";
     }
 
     public function deleteButton() {
-        echo '<button>Delete</button>';
+        echo "<a class='btn' href='articleManagement/deleteArticle.php?id=$this->id'> Delete Article </a>";
     }
 
 }
@@ -96,15 +96,15 @@ class PhotoArticle extends Article {
     }
 
     public function printPreview() {
-        echo '<img src="' . $this->preview . '" width="200">';
+        echo '<img style="display: block;" src="' . $this->preview . '" width="200">';
     }
 
     public function commentButton() {
-        echo '<button>Comment</button>';
+        echo "<a class='btn' href='articleManagement/commentArticle.php?id=$this->id'> Leave Comment </a>";
     }
 
     public function deleteButton() {
-        echo '<button>Delete</button>';
+        echo "<a class='btn' href='articleManagement/deleteArticle.php?id=$this->id'> Delete Article </a>";
     }
 
 }
