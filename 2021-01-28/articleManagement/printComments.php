@@ -11,12 +11,12 @@ function printComments($pub) {
         $comments[] = $result;
     }
 
+    echo '<b>Komentarai: </b><br>';
     foreach ($comments as $comment) {
-
         if ($comment['article_id'] == $pub->id) {
-            echo $comment['user'] . '<br>';
-            echo $comment['comment'] . '<br>';
+            echo '<i>' . $comment['user'] . '</i> - ' . $comment['comment'] . '<br>';
         }
     }
+    echo '<hr>';
 }
 

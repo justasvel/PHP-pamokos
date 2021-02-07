@@ -43,7 +43,7 @@
             authorCheck($pub);
             adminCheck($pub);
             visitorCheck($pub);
-            echo $pub->printLink();
+            $pub->printLink();
             printComments($pub);
         }
         ?>
