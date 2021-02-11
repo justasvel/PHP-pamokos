@@ -1,4 +1,5 @@
 <?php
+session_start();
 if (isset($_POST['submit'])) {
     require 'userAuth/config.php';
     //Set all variables
@@ -16,6 +17,9 @@ if (isset($_POST['submit'])) {
     $picture1 = $_POST['picture1'];
     $picture2 = $_POST['picture2'];
     $picture3 = $_POST['picture3'];
+    
+    $username = $_SESSION['username'];
+    $userId = $_SESSION['id'];
 
     //Isjungti automatini uzklausu patvirtinimas
     mysqli_autocommit($link, 0);
@@ -43,8 +47,8 @@ if (isset($_POST['submit'])) {
 
     if ($count == 0) {
         //Insert into articles table
-        $sqlInsert = "INSERT INTO articles (author, shortContent, content, publishDate, type, title, addDate, preview) "
-                . "VALUES ('$author', '$shortContent', '$content', '$publishDate', '$type', '$title', '$addDate', '$preview')";
+        $sqlInsert = "INSERT INTO articles (author, shortContent, content, publishDate, type, title, addDate, preview, username, user_id) "
+                . "VALUES ('$author', '$shortContent', '$content', '$publishDate', '$type', '$title', '$addDate', '$preview', '$username', '$userId')";
 
         mysqli_query($link, $sqlInsert);
         mysqli_commit($link);
@@ -53,25 +57,25 @@ if (isset($_POST['submit'])) {
         $sqlGetArticleId = "SELECT id FROM articles WHERE author = '$author' AND shortContent = '$shortContent' AND content = '$content' AND type = '$type'";
         $idResult = mysqli_fetch_array(mysqli_query($link, $sqlGetArticleId));
         $id = $idResult['id'];
-        echo $id;
+
         //Insert themes into database
-        $sqlInsertThemes = "INSERT INTO article_themes (article_id, theme1, theme2, theme3)"
-                . "VALUES('$id', '$theme1', '$theme2', '$theme3')";
+        $sqlInsertThemes = "INSERT INTO article_themes (article_id, theme1, theme2, theme3, user_id)"
+                . "VALUES('$id', '$theme1', '$theme2', '$theme3', '$userId')";
 
         if(!mysqli_query($link, $sqlInsertThemes)) {
             echo "Error: " . mysqli_error($link);
         }
         //Insert images into databse
-        $sqlInsertImages = "INSERT INTO images (straipsnio_id, link)"
-                . "VALUES ('$id', '$picture1'),"
-                . "('$id', '$picture2'),"
-                . "('$id', '$picture3')";
+        $sqlInsertImages = "INSERT INTO images (straipsnio_id, link, user_id)"
+                . "VALUES ('$id', '$picture1', '$userId'),"
+                . "('$id', '$picture2', '$userId'),"
+                . "('$id', '$picture3', '$userId')";
         
         
         if(!mysqli_query($link, $sqlInsertImages)) {
             echo "Error: " . mysqli_error($link);
         }
-        echo $id;
+
         mysqli_commit($link);
         header('Location: view.php');
     } else if ($count > 0) {

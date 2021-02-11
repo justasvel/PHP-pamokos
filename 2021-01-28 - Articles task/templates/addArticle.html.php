@@ -1,54 +1,4 @@
-<html lang="en">
-    <head>
-        <meta charset="utf-8">
-
-        <title>Articles</title>
-        <meta name="description" content="The HTML5 Herald">
-        <meta name="author" content="SitePoint">
-        <style>
-            .btn {
-                display:inline-block;
-                text-decoration: none;
-                color: white;
-                padding: 2px;
-                background: gray;
-                border-radius: 5px;
-                margin: 10px 0;
-            }
-        </style>
-
-    </head>
-
-    <body>
-        <?php
-        session_start();
-        require 'userAuth/userLogOut.php';
-        require 'templates/logOut.html.php';
-        require 'data.php';
-        require 'userAuth/checkuser.php';
-        require 'articleManagement/printComments.php';
-
-
-        if (isset($errors)) {
-            echo $errors;
-            exit();
-        }
-        // Print out all of the articles
-        foreach ($publications as $pub) {
-            echo $pub->printArticle();
-
-            if ($pub->type == 'PhotoArticle') {
-                echo $pub->printPreview();
-            }
-            authorCheck($pub);
-            adminCheck($pub);
-            visitorCheck($pub);
-            $pub->printLink();
-            printComments($pub);
-        }
-        ?>
-
-        <h3>Add new Article:</h3>
+<h3>Add new Article:</h3>
         <form method="POST" action="addarticle.php">
             <div>
                 <label>Author</label>
@@ -72,7 +22,7 @@
                     <select name="type">
                         <option value="NewsArticle">NewsArticle</option>
                         <option value="ShortArticle">ShortArticle</option>
-                        <option value="PhotoArticle">NewsArticle</option>
+                        <option value="PhotoArticle">PhotoArticle</option>
                     </select>
                 </p>
             </div>
@@ -82,7 +32,7 @@
             </div>
             <div>
                 <label>Add date</label>
-                <p><input type="date" name="add-date" placeholder="Todays date..." required></p>
+                <p><input type="date" name="add-date" required></p>
             </div>
             <div>
                 <label>Add preview</label>
@@ -114,5 +64,4 @@
             </div>
             <input type="submit" value="Add new Article to the list" name="submit">
         </form>
-    </body>
-</html>
+

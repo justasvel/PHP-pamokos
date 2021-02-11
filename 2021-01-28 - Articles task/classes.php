@@ -6,6 +6,7 @@ class Article {
     public $shortContent;
     public $content;
     public $publishDate;
+    public $addDate;
     public $type;
     public $title;
     public $preview;
@@ -20,6 +21,7 @@ class Article {
         $this->type = $row['type'];
         $this->preview = $row['preview'];
         $this->id = $row['id'];
+        $this->addDate = $row['addDate'];
     }
 
 }
@@ -31,6 +33,7 @@ class ShortArticle extends Article {
         echo '<h3>' . $this->title . '</h3>';
         echo '<p style="font-size: 10px;">' . $this->author . '</p>';
         echo '<p style="font-size: 10px;">' . $this->publishDate . '</p>';
+        echo '<p style="font-size: 12px;color: red;"> Updated: ' . $this->addDate . '</p>';
         echo '<br>' . $this->type;
         echo '<br>' . $this->content;
         echo '</div>';
@@ -58,6 +61,7 @@ class NewsArticle extends Article {
         echo '<h3>' . $this->title . '</h3>';
         echo '<p style="font-size: 10px;">' . $this->author . '</p>';
         echo '<p style="font-size: 10px;">' . $this->publishDate . '</p>';
+        echo '<p style="font-size: 12px;color: red;"> Updated: ' . $this->addDate . '</p>';
         echo '<br>' . $this->type;
         echo '<br>' . $this->content;
         echo '</div>';
@@ -85,6 +89,7 @@ class PhotoArticle extends Article {
         echo '<h3>' . $this->title . '</h3>';
         echo '<p style="font-size: 10px;">' . $this->author . '</p>';
         echo '<p style="font-size: 10px;">' . $this->publishDate . '</p>';
+        echo '<p style="font-size: 12px;color: red;"> Updated: ' . $this->addDate . '</p>';
         echo '<br>' . $this->type;
         echo '<br>' . $this->content;
         echo '</div>';

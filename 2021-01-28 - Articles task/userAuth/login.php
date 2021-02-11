@@ -1,4 +1,5 @@
 <?php
+
 // Initialize session
 session_start();
 
@@ -22,31 +23,37 @@ if (isset($_POST['submit'])) {
         $sql = "SELECT id, username, password, usertype, article_id FROM users WHERE username = '$username' AND password = '$password'";
         $result = mysqli_query($link, $sql);
         $row = mysqli_fetch_array($result, MYSQLI_ASSOC);
-        
+
         $count = mysqli_num_rows($result);
-        
-        if($count == 1) {
+
+        if ($count == 1) {
             //Store session data
             $_SESSION["loggedin"] = true;
             $_SESSION["username"] = $username;
             $_SESSION["usertype"] = $row["usertype"];
             $_SESSION["id"] = $row["id"];
-            
-            //Check if one of the authors are logged in
-            if (isset($row['article_id'])) {
-                $_SESSION['authorArticle'] = $row['article_id'];
+
+            //Check if user has been deleted or blocked
+            if ($_SESSION['usertype'] == 'deleted') {
+                $user_err = 'Can\'t login. Your user has been deleted.';
+            } else if ($_SESSION['usertype'] == 'blocked') {
+                $user_err = 'Can\'t login. Your user has been blocked';
             } else {
-                $_SESSION['authorArticle'] = 0;
+                //Check if one of the authors are logged in
+                if (isset($row['article_id'])) {
+                    $_SESSION['authorArticle'] = $row['article_id'];
+                } else {
+                    $_SESSION['authorArticle'] = 0;
+                }
+
+                //Redirect to view.php page
+                header('location: view.php');
             }
-            
-            //Redirect to view.php page
-            header('location: view.php');
         } else {
             $user_err = 'Your Login Name or Password is invalid';
         }
-            
-        } else {
-            $user_err = 'All fields must be filled in';
-        }
+    } else {
+        $user_err = 'All fields must be filled in';
     }
+}
 
