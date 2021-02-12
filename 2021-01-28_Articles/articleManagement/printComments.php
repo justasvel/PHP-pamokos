@@ -10,9 +10,7 @@ function printComments($pub) {
     foreach ($results as $result) {
         $comments[] = $result;
     }
-
     $commentsCount = "SELECT COUNT(comment) FROM comments WHERE article_id = '$pub->id'";
-    
     $GLOBALS['count'] = 0;
     
     if (!empty($comments)) {
